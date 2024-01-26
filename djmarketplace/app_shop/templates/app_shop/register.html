@@ -1,0 +1,10 @@
+{% extends 'app_shop/base.html' %}
+{% block main %}
+  <h1 class="mt-3">Registration</h1>
+  <form class="form" method="post">
+    {% csrf_token %}
+    {{user_form.as_p}}
+    <button class="btn btn-primary" type="submit">Sign up</button>
+    <p style="color: red">{{errors}}</p>
+  </form>
+{% endblock %}
