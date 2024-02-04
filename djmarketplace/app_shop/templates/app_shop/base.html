@@ -17,7 +17,7 @@
                         Actions
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" type="button" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" type="button" href="{% url 'profile' request.user.pk %}">Profile</a></li>
                         <li><a class="dropdown-item" type="button" href="#">Cart</a></li>
                         <li><a class="dropdown-item" type="button" href="#">Balance: {{request.user.profile.balance|floatformat:2}} rub.</a></li>
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

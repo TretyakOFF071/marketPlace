@@ -1,0 +1,19 @@
+{% extends 'app_shop/base.html' %}
+
+{% block main %}
+    <h1>Profile</h1>
+    {% if object.profile.status_flag == 'new' %}
+        <span>Your current status is Trainee</span>
+    {% elif object.profile.status_flag == 'adv' %}
+        <span>Your current status is Advanced</span>
+    {% else %}
+        <span>Your current status is Expert</span>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-primary" type="submit">Confirm</button>
+    </form>
+{% endblock %}
+
+

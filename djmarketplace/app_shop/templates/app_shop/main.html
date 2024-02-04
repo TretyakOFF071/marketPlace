@@ -1,6 +1,28 @@
 {% extends 'app_shop/base.html' %}
 
+{% block main %}
 
+    <h4>Average price in our marketplace is {{avg_price|floatformat:2}} RUB.</h4>
+    <div class="d-flex justify-content-start mt-5">
+        {% for i_good in goods %}
+            <div class="card me-3" style="width: 18rem;">
+              <img src="{{i_good.image.url}}" class="card-img-top" alt="good image">
+              <div class="card-body">
+                <h5 class="card-title">{{i_good.name}}</h5>
+                <h6>{{i_good.category}}</h6>
+                <h6>{{i_good.shop.name}}</h6>
+                <p class="card-text">{{i_good.description|truncatewords:10}}</p>
+                <p>{{i_good.price}} RUB.</p>
 
-
-
+                  <form method="post" action="">
+                      {% csrf_token %}
+                      {{add_form.good_num}}
+                      <button type="submit" class="btn btn-primary">Add to cart</button>
+                  </form>
+              </div>
+            </div>
+        {% empty %}
+            <h2>No goods ... =(</h2>
+        {% endfor %}
+    </div>
+{% endblock %}
