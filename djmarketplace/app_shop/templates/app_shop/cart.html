@@ -1,0 +1,30 @@
+{% extends 'app_shop/base.html' %}
+
+{% block main %}
+   {% if cart %}
+    <div class="d-flex flex-wrap">
+      {% for item in cart %}
+        <div class="d-flex flex-column me-5 mb-5 border border-secondary p-2 position-relative">
+            <span class="position-absolute top-0 end-0">
+                <img width="30" height="30" src="{{item.good.shop.log.url}}" alt="">
+            </span>
+            <h3 class="pt-3">{{item.good.name}}</h3>
+            <span>{{item.good.category.name}}</span>
+           <img width="100" height="100" src="{{item.good.image.url}}">
+           <span>Price: {{item.good.price}} RUB</span>
+           <span>Quantity: {{item.good_num}}</span>
+            <span>Total: {% widthratio item.good.price 1 item.good_num %} RUB</span>
+        </div>
+      {% endfor %}
+    </div>
+    <h3>Total price {{total_price}} RUB</h3>
+<form method="post" action="{% url 'pay' request.user.pk %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Pay</button>
+</form>
+  {% else %}
+
+   <h4>No goods in cart</h4>
+   {% endif %}
+
+{% endblock %}
