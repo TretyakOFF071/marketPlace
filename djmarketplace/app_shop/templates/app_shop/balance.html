@@ -1,0 +1,12 @@
+{% extends 'app_shop/base.html'%}
+
+{% block main %}
+  <h2>Пополнение баланса</h2>
+  <div style="width: 450px; padding: 15px; background-color: lightgrey; border: 1px solid black;">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Пополнить</button>
+    </form>
+  </div>
+{% endblock %}
