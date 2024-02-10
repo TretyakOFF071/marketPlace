@@ -15,6 +15,8 @@ from django.urls import reverse
 from .forms import UserForm, CartAddForm, BalanceForm
 from .models import *
 
+from huey.contrib.djhuey import task
+
 
 
 def balance_view(request):
@@ -106,7 +108,9 @@ class CartView(LoginRequiredMixin, View):
             cart = None
         return render(self.request, 'app_shop/cart.html', context={'cart': cart, 'total_price': total_price})
 
+
 @require_POST
+@task
 def pay(request, pk):
 
     profile = get_object_or_404(Profile, user=request.user)
